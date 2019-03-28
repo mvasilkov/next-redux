@@ -1,11 +1,11 @@
 'use strict'
 
-import React from 'react'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import App, { Container } from 'next/app'
+const React = require('react')
+const { createStore } = require('redux')
+const { Provider } = require('react-redux')
+const { default: App, Container } = require('next/app')
 
-export function appWithRedux(reducer, enhancer) {
+exports.appWithRedux = function appWithRedux(reducer, enhancer) {
     const cached = Symbol('store')
 
     function getStore(initialState) {
