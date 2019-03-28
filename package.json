@@ -1,7 +1,12 @@
 {
   "name": "next-redux",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Next.js Redux coupling",
+  "keywords": [
+    "next",
+    "react",
+    "redux"
+  ],
   "main": "app.js",
   "repository": "https://github.com/mvasilkov/next-redux",
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",

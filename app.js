@@ -31,11 +31,14 @@ export function appWithRedux(reducer, enhancer) {
         render() {
             const { Component, pageProps } = this.props
             return (
-                <Container>
+                /* <Container>
                     <Provider store={this.store}>
                         <Component {...pageProps} />
                     </Provider>
-                </Container>
+                </Container> */
+                React.createElement(Container, null,
+                    React.createElement(Provider, { store: this.store },
+                        React.createElement(Component, pageProps)))
             )
         }
     }
