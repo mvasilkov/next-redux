@@ -1,6 +1,6 @@
 {
   "name": "next-redux",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Next.js Redux coupling",
   "keywords": [
     "next",
@@ -14,7 +14,7 @@
   "peerDependencies": {
     "next": "^8.0.0",
     "react": "^16.0.0",
-    "react-redux": "^6.0.0",
+    "react-redux": "^6.0.0 || ^7.0.0",
     "redux": "^4.0.0"
   }
 }
