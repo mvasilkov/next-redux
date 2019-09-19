@@ -3,11 +3,16 @@
 const React = require('react')
 const { createStore } = require('redux')
 const { Provider } = require('react-redux')
-const { default: App, Container } = require('next/app')
+const { default: App } = require('next/app')
+
+const cached = Symbol('store')
+
+exports.getStore = function getStore() {
+    if (typeof window != 'undefined')
+        return window[cached]
+}
 
 exports.appWithRedux = function appWithRedux(reducer, enhancer) {
-    const cached = Symbol('store')
-
     function getStore(initialState) {
         if (typeof window == 'undefined')
             return createStore(reducer, initialState, enhancer)
@@ -31,14 +36,11 @@ exports.appWithRedux = function appWithRedux(reducer, enhancer) {
         render() {
             const { Component, pageProps } = this.props
             return (
-                /* <Container>
-                    <Provider store={this.store}>
-                        <Component {...pageProps} />
-                    </Provider>
-                </Container> */
-                React.createElement(Container, null,
-                    React.createElement(Provider, { store: this.store },
-                        React.createElement(Component, pageProps)))
+                /* <Provider store={this.store}>
+                    <Component {...pageProps} />
+                </Provider> */
+                React.createElement(Provider, { store: this.store },
+                    React.createElement(Component, pageProps))
             )
         }
     }
