@@ -3,24 +3,43 @@ next-redux
 
 Next.js Redux coupling
 
-[![npm][npm-image]][npm-url] ![][size-image]
+[![npm][npm-badge]][npm-url]
+[![no dependencies][dependencies-badge]][dependencies-url]
+[![][size-badge]][npm-url]
 
 ---
 
 Installation
 ---
 
-    yarn add next-redux
+```sh
+npm add redux react-redux next-redux
+```
 
 Synopsis
 ---
 
-    appWithRedux(reducer, [enhancer])
+```javascript
+appWithRedux(reducer, [enhancer])
+```
 
 Usage
 ---
 
-In **pages/_app.js** of your Next.js project:
+In the **pages/_app.js** file of your Next.js project:
+
+```javascript
+import { combineReducers, applyMiddleware } from 'redux'
+import { appWithRedux } from 'next-redux'
+
+const reducer = combineReducers(/* Your reducers here */)
+
+export default appWithRedux(reducer)
+```
+
+<p align="center"><sup>File: pages/_app.js</sup></p>
+
+#### With redux-devtools and redux-thunk
 
 ```javascript
 import { combineReducers, applyMiddleware } from 'redux'
@@ -29,13 +48,20 @@ import thunkMiddleware from 'redux-thunk'
 import { appWithRedux } from 'next-redux'
 
 const reducer = combineReducers(/* Your reducers here */)
-
-/* Optional: using redux-thunk and redux-devtools */
 const enhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
 export default appWithRedux(reducer, enhancer)
 ```
 
-[npm-image]: https://img.shields.io/npm/v/next-redux.svg?style=flat-square
+<p align="center"><sup>File: pages/_app.js</sup></p>
+
+License
+---
+
+MIT
+
+[npm-badge]: https://img.shields.io/npm/v/next-redux.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/next-redux
-[size-image]: https://img.shields.io/github/size/mvasilkov/next-redux/app.js.svg?style=flat-square
+[dependencies-badge]: https://img.shields.io/david/mvasilkov/next-redux?style=flat
+[dependencies-url]: https://www.npmjs.com/package/next-redux?activeTab=dependencies
+[size-badge]: https://img.shields.io/github/size/mvasilkov/next-redux/app.js.svg?style=flat

@@ -5,27 +5,22 @@ const { createStore } = require('redux')
 const { Provider } = require('react-redux')
 const { default: App } = require('next/app')
 
-const cached = Symbol('store')
+const server = typeof window == 'undefined'
+const cache = Symbol('store')
 
-exports.getStore = function getStore() {
-    if (typeof window != 'undefined')
-        return window[cached]
-}
+exports.getStore = () => server ? undefined : window[cache]
 
 exports.appWithRedux = function appWithRedux(reducer, enhancer) {
     function getStore(initialState) {
-        if (typeof window == 'undefined')
-            return createStore(reducer, initialState, enhancer)
-
-        return window[cached] ||
-            (window[cached] = createStore(reducer, initialState, enhancer))
+        if (server) return createStore(reducer, initialState, enhancer)
+        if (window[cache]) return window[cache]
+        return window[cache] = createStore(reducer, initialState, enhancer)
     }
 
     return class AppWithRedux extends App {
         static async getInitialProps(appContext) {
             const props = await super.getInitialProps(appContext)
-            const store = getStore()
-            return Object.assign(props, { initialState: store.getState() })
+            return Object.assign(props, { initialState: getStore().getState() })
         }
 
         constructor(props) {
