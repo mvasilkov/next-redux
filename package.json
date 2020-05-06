@@ -9,6 +9,9 @@
     "no-dependencies"
   ],
   "main": "app.js",
+  "files": [
+    "app.js"
+  ],
   "repository": "https://github.com/mvasilkov/next-redux",
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "MIT",
