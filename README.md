@@ -62,6 +62,6 @@ MIT
 
 [npm-badge]: https://img.shields.io/npm/v/next-redux.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/next-redux
-[dependencies-badge]: https://img.shields.io/david/mvasilkov/next-redux?style=flat
+[dependencies-badge]: https://img.shields.io/librariesio/release/npm/next-redux?style=flat
 [dependencies-url]: https://www.npmjs.com/package/next-redux?activeTab=dependencies
 [size-badge]: https://img.shields.io/github/size/mvasilkov/next-redux/app.js.svg?style=flat
